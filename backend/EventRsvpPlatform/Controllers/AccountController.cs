@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
+using Models.DTOs;
+using Models.DTOs.Response;
+using Models.Entities;
 using Services.Interface;
 
 namespace EventRsvpPlatform.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/api/accounts")]
 public class AccountController : ControllerBase
 {
     private readonly IAccountService _accountService;
@@ -17,7 +20,7 @@ public class AccountController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllAccounts()
     {
-        var response = "null";
-        return Ok(response);
+        var response = await _accountService.GetAllAccounts();
+        return Ok(new ApiResponse<List<AccountResponse>> { Success = true, Data = response });
     }
 }

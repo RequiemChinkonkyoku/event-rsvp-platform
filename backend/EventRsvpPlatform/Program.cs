@@ -1,6 +1,7 @@
 using System.Globalization;
 using AutoMapper;
 using EventRsvpPlatform.Extensions;
+using EventRsvpPlatform.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
@@ -12,6 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 
 builder.Services.AddControllers();
+
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ApiExceptionFilter>();
+});
 
 builder.Services.AddSingleton<IMapper>(option =>
 {

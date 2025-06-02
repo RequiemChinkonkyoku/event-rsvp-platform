@@ -13,4 +13,11 @@ public class AccountController : ControllerBase
     {
         _accountService = accountService;
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetAllAccounts()
+    {
+        var response = "null";
+        return Ok(response);
+    }
 }

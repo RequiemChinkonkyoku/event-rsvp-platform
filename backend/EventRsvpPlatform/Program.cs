@@ -2,11 +2,14 @@ using System.Globalization;
 using AutoMapper;
 using EventRsvpPlatform.Extensions;
 using EventRsvpPlatform.Filters;
+using EventRsvpPlatform.Validators.Account;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Models.AutoMapper;
 using Repositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +32,9 @@ builder.Services.AddSingleton<IMapper>(option =>
 });
 
 builder.Services.AddServiceExtension(builder.Configuration);
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateAccountRequestValidator>();
+builder.Services.AddFluentValidationAutoValidation();
 
 builder.Services.AddEndpointsApiExplorer();
 

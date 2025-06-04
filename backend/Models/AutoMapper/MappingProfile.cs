@@ -10,7 +10,7 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<Account, AccountResponse>();
-        CreateMap<AccountRequest, Account>();
+        CreateMap<CreateAccountRequest, Account>();
         
         CreateMap<Event, EventResponse>();
         CreateMap<EventRequest, Event>();

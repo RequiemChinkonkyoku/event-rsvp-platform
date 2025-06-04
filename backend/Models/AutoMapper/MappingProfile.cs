@@ -13,7 +13,7 @@ public class MappingProfile : Profile
         CreateMap<CreateAccountRequest, Account>();
         
         CreateMap<Event, EventResponse>();
-        CreateMap<EventRequest, Event>();
+        CreateMap<CreateEventRequest, Event>();
         
         CreateMap<Rsvp, RsvpResponse>();
         CreateMap<RsvpRequest, Rsvp>();

@@ -53,5 +53,11 @@ public class EventRsvpPlatformDbContext : DbContext
             .WithMany(x => x.Rsvps)
             .HasForeignKey(x => x.EventId)
             .OnDelete(DeleteBehavior.Cascade); // Automatically delete all RSVPs when event is deleted
+        
+        modelBuilder.Entity<Event>()
+            .HasOne(x => x.Account)
+            .WithMany(x => x.Events)
+            .HasForeignKey(x => x.AccountId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

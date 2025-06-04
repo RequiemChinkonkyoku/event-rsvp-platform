@@ -1,4 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Models.DTOs;
+using Models.DTOs.Request;
+using Models.DTOs.Response;
+using Models.Entities;
 using Services.Interface;
 
 namespace EventRsvpPlatform.Controllers;
@@ -19,5 +23,12 @@ public class EventController : ControllerBase
     {
         var response = "null";
         return Ok(response);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateEvent([FromBody] CreateEventRequest request)
+    {
+        var response = await _eventService.CreateEventAsync(request);
+        return Ok(new ApiResponse<EventResponse> { Success = true, Data = response });
     }
 }

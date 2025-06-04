@@ -4,7 +4,7 @@ namespace Models.Entities;
 
 public class Rsvp : BaseEntity
 {
-    public Guid AccountId { get; set; }
+    public Guid? AccountId { get; set; }
     public Account Account { get; set; }
     
     public Guid EventId { get; set; }

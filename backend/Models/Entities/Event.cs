@@ -16,5 +16,8 @@ public class Event : BaseEntity
     
     public int Capacity { get; set; }
     
+    public Guid AccountId { get; set; }
+    public Account Account { get; set; }
+    
     public ICollection<Rsvp>? Rsvps { get; set; }
 }

@@ -17,37 +17,39 @@ public class AccountController : ControllerBase
     {
         _accountService = accountService;
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> GetAllAccounts()
     {
-        var response = await _accountService.GetAllAccounts();
+        var response = await _accountService.GetAllAccountsAsync();
         return Ok(new ApiResponse<List<AccountResponse>> { Success = true, Data = response });
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAccountById([FromRoute] Guid id)
     {
-        var response = await _accountService.GetAccountById(id);
+        var response = await _accountService.GetAccountByIdAsync(id);
         return Ok(new ApiResponse<AccountResponse> { Success = true, Data = response });
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateAccount([FromBody] CreateAccountRequest request)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
+        var response = await _accountService.CreateAccountAsync(request);
+        return Ok(new ApiResponse<AccountResponse> { Success = true, Data = response });
+    }
 
-        try
-        {
-            var response = await _accountService.CreateAccount(request);
-            return Ok(new ApiResponse<AccountResponse> { Success = true, Data = response });
-        }
-        catch (InvalidOperationException ex)
-        {
-            return Conflict(new { message = ex.Message });
-        }
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateAccount([FromRoute] Guid id, [FromBody] UpdateAccountRequest request)
+    {
+        var response = await _accountService.UpdateAccountAsync(id, request);
+        return Ok(new ApiResponse<AccountResponse> { Success = true, Data = response });
+    }
+
+    [HttpPut("{id}/password")]
+    public async Task<IActionResult> UpdatePassword([FromRoute] Guid id, [FromBody] UpdatePasswordRequest request)
+    {
+        var response = await _accountService.UpdatePasswordAsync(id, request);
+        return Ok(new ApiResponse<AccountResponse> { Success = true, Data = response });
     }
 }

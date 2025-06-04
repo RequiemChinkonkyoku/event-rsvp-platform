@@ -5,7 +5,9 @@ namespace Services.Interface;
 
 public interface IAccountService
 {
-    Task<List<AccountResponse>> GetAllAccounts();
-    Task<AccountResponse> CreateAccount(CreateAccountRequest request);
-    Task<AccountResponse> GetAccountById(Guid id);
+    Task<List<AccountResponse>> GetAllAccountsAsync();
+    Task<AccountResponse> CreateAccountAsync(CreateAccountRequest request);
+    Task<AccountResponse> GetAccountByIdAsync(Guid id);
+    Task<AccountResponse> UpdateAccountAsync(Guid id, UpdateAccountRequest request);
+    Task<AccountResponse> UpdatePasswordAsync(Guid id, UpdatePasswordRequest request);
 }

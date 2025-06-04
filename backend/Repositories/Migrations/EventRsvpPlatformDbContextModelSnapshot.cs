@@ -63,7 +63,7 @@ namespace Repositories.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accounts");
+                    b.ToTable("Accounts", (string)null);
                 });
 
             modelBuilder.Entity("Models.Entities.Event", b =>
@@ -111,7 +111,7 @@ namespace Repositories.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Events");
+                    b.ToTable("Events", (string)null);
                 });
 
             modelBuilder.Entity("Models.Entities.Rsvp", b =>
@@ -153,7 +153,7 @@ namespace Repositories.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("Rsvps");
+                    b.ToTable("Rsvps", (string)null);
                 });
 
             modelBuilder.Entity("Models.Entities.Rsvp", b =>

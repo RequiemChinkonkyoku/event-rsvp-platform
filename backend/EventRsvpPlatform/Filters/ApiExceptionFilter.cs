@@ -17,6 +17,7 @@ public class ApiExceptionFilter : IExceptionFilter
         {
             KeyNotFoundException => new NotFoundObjectResult(errorResponse),
             ArgumentException => new BadRequestObjectResult(errorResponse),
+            ConflictException => new ConflictObjectResult(errorResponse),
             _ => new ObjectResult(errorResponse) { StatusCode = 500 }
         };
     }
